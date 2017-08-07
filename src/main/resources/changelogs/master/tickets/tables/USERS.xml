@@ -1,0 +1,59 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="users-06-08-2017" author="espen.gudmundsen" runOnChange="true">
+        <createTable catalogName="cat"
+                     remarks="a USERS table"
+                     schemaName="public"
+                     tableName="USERS"
+                     tablespace="tickets_db">
+
+            <column autoIncrement="true" type="INTEGER" name="USER_ID">
+                <constraints unique="true" primaryKey="true" nullable="false" primaryKeyName="USER_ID"/>
+            </column>
+
+            <!-- Personal information  -->
+            <column name="AGE" type="INTEGER">
+                <constraints foreignKeyName="TICKET_TYPE_FK" nullable="true" checkConstraint=""/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUR_NAME" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- User information -->
+            <column name="USER_NAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="E_MAIL" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HASH" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <sql>
+            ALTER TABLE USERS ADD CONSTRAINT age_check CHECK (AGE &gt;=0 AND AGE &lt;= 120)
+        </sql>
+    </changeSet>
+
+    <changeSet id="unique-constraints-06-08-2017" author="espen.gudmundsen">
+        <renameColumn tableName="USERS" oldColumnName="E_MAIL" newColumnName="EMAIL"/>
+        <addUniqueConstraint tableName="USERS" columnNames="USER_NAME" constraintName="UNIQUE_USER_NAME"/>
+        <addUniqueConstraint tableName="USERS" columnNames="EMAIL" constraintName="UNIQUE_EMAIL"/>
+        <rollback>
+            <dropUniqueConstraint tableName="USERS" uniqueColumns="USER_NAME" constraintName="UNIQUE_USER_NAME"/>
+            <dropUniqueConstraint tableName="USERS" uniqueColumns="USER_NAME" constraintName="UNIQUE_EMAIL"/>
+            <renameColumn tableName="USERS" oldColumnName="EMAIL" newColumnName="E_MAIL"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

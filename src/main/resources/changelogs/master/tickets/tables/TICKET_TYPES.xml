@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="ticket-types-06-08-2017" author="espen.gudmundsen" runOnChange="true">
+        <createTable catalogName="cat"
+                     remarks="a TICKET_TYPES table"
+                     schemaName="public"
+                     tableName="TICKET_TYPES"
+                     tablespace="tickets_db">
+
+            <column autoIncrement="true" type="INTEGER" name="TICKET_TYPE_ID">
+                <constraints unique="true" primaryKey="true" nullable="false" primaryKeyName="TICKET_TYPE_ID"/>
+            </column>
+
+            <column name="TICKET_TYPE_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="PRICE" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-ticket-type-info-08-06" author="espen.gudmundsen">
+        <addColumn tableName="TICKET_TYPES" catalogName="cat">
+            <column name="TICKET_INFORMATION" type="VARCHAR(500)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

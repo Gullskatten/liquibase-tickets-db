@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.espengudmundsen.db</groupId>
+    <artifactId>liquibase-tickets-db</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>liquibase-tickets-db</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+
+        <!-- Liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <changeLogFile>src/main/resources/changelogs/changelog-master.xml</changeLogFile>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost/tickets</url>
+                    <!--
+
+                    Note!
+                    This is a sample application I made. In a real context, don't store your username/password like this.
+                    Create a maven profile (in .m2/settings.xml) having properties set for this configuration
+                    (e.g. liquibase.username / liquibase.password), and use filters together with a liquibase.properties file.
+
+                    -->
+                    <username>postgres</username>
+                    <password>welcome1</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>9.1-901-1.jdbc4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

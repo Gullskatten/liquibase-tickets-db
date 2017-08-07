@@ -1,0 +1,11 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="tickettypes-ins-06-08-2017" author="espen.gudmundsen" runOnChange="true">
+        <loadUpdateData tableName="TICKET_TYPES" catalogName="cat" primaryKey="TICKET_TYPE_ID"
+                        file="src/main/resources/changelogs/master/tickets/data/sql/CREATE_TICKET_TYPES.csv"/>
+    </changeSet>
+</databaseChangeLog>

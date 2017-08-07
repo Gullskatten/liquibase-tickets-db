@@ -1,0 +1,3 @@
+USER_ID,AGE,FIRST_NAME,LAST_NAME,USER_NAME,EMAIL,HASH
+1,24,Espen,Gudmundsen,gudesp,espen@gudmundsen.no,1953cec2ae57e1bae49e3ab09d3b0339d17491dc0b5bcdd74dfd444b70753295
+2,24,Admin,Admin,admin,admin@gudmundsen.no,4739a1dc321204881ad781ad66dcd9f2e23d8d3c236059ff23c55aabef1be3bc

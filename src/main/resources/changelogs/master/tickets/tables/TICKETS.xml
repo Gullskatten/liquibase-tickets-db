@@ -1,0 +1,39 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="tickets-06-08-2017" author="espen.gudmundsen" runOnChange="true">
+        <createTable catalogName="cat"
+                     remarks="a TICKETS table"
+                     schemaName="public"
+                     tableName="TICKETS"
+                     tablespace="tickets_db">
+
+            <column autoIncrement="true" type="INTEGER" name="TICKET_ID">
+                <constraints unique="true" primaryKey="true" nullable="false" primaryKeyName="TICKET_ID"/>
+            </column>
+
+            <column name="TICKET_TYPE" type="INTEGER">
+                <constraints foreignKeyName="TICKET_TYPE_FK" nullable="false"/>
+            </column>
+
+            <column name="OWNER" type="INTEGER">
+                <constraints foreignKeyName="USER_FK" nullable="true"/>
+            </column>
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="TICKETS" baseColumnNames="TICKET_TYPE"
+                                 constraintName="TICKET_TYPE_REL"
+                                 referencedTableName="TICKET_TYPES"
+                                 onDelete="CASCADE"
+                                 referencedColumnNames="TICKET_TYPE_ID"/>
+        <addForeignKeyConstraint baseTableName="TICKETS" baseColumnNames="OWNER"
+                                 constraintName="TICKET_OWNER_REL"
+                                 referencedTableName="USERS"
+                                 onDelete="CASCADE"
+                                 referencedColumnNames="USER_ID"/>
+    </changeSet>
+
+</databaseChangeLog>
