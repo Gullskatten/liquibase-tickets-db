@@ -8,14 +8,12 @@
     <name>liquibase-tickets-db</name>
     <url>http://maven.apache.org</url>
     <dependencies>
-
         <!-- Liquibase-core -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>3.5.3</version>
         </dependency>
-
     </dependencies>
 
     <build>
