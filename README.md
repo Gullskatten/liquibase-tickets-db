@@ -14,14 +14,15 @@ A sample Liquibase setup using [_liquibase-maven-plugin_](https://mvnrepository.
 
 ## Hierarchy
 
-The [`changelogs/master`](src/main/resources/changelogs/master) folder:
+#### The [`changelogs/master`](src/main/resources/changelogs/master) folder:
 
 The master folder should contain all the 'databases'.
+
 In this example we only work with one database, `tickets`.
 
-A database-folder (e.g. [`master/tickets`](src/main/resources/changelogs/master/tickets)):
+#### The database-folder(s) (e.g. [`master/tickets`](src/main/resources/changelogs/master/tickets)):
 
-The database-folder usually contain the following sub-folders:
+A database-folder usually contain the following sub-folders:
 * `data` : All pre-defined data (inserted into the tables) will be included here.
 * `testdata` : All pre-defined test data. _Keep data and test data separated!_
 * `tables` : All the tables should be defined here.
