@@ -12,6 +12,25 @@ A sample Liquibase setup using [_liquibase-maven-plugin_](https://mvnrepository.
 * Extract username/password from the POM configuration.
 * Creating indexes, triggers..
 
+## Hierarchy
+
+The [`changelogs/master`](src/main/resources/changelogs/master) folder:
+
+The master folder should contain all the 'databases'.
+In this example we only work with one database, `tickets`.
+
+A database-folder (e.g. [`master/tickets`](src/main/resources/changelogs/master/tickets)):
+
+The database-folder usually contain the following sub-folders:
+* `data` : All pre-defined data (inserted into the tables) will be included here.
+* `testdata` : All pre-defined test data. _Keep data and test data separated!_
+* `tables` : All the tables should be defined here.
+* `indexes` : All the create-index definitions should be defined here.
+
+Additional examples..
+* `packages` : Any PL/SQL (e.g. in Oracle databases) should be defined here.  
+* `triggers` : Any database triggers should be defined here.  
+
 ## Installation
 
 #### 1. Open _postgresql_ (ex. through pgAdmin):
