@@ -9,7 +9,7 @@ A sample Liquibase setup using [_liquibase-maven-plugin_](https://mvnrepository.
 * Simple _rollback_ example.
   
 ### Not covered:
-* Extract username/password from the POM (<build>)
+* Extract username/password from the POM configuration.
 * Creating indexes, triggers..
 
 ## Installation
